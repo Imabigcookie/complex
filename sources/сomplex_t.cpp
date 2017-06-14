@@ -22,7 +22,6 @@ bool complex_t::operator == (const complex_t& c2) const
 	if ((a == c2.a) && (b == c2.b))
 		return true;
 }
-
 complex_t complex_t::operator = (const complex_t& result)
 {
 	if (this != &result) 
