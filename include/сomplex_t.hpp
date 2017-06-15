@@ -14,11 +14,11 @@ public:
 	double b() const;
 	complex_t operator * (const complex_t& c2) const;
 	complex_t operator / (const complex_t& c2) const;
-	complex_t operator += (const complex_t& c2); 
-	complex_t operator -= (const complex_t& c2) ;
-	complex_t operator *= (const complex_t& c2) ;
-	complex_t operator /= (const complex_t& c2) ;
-	complex_t operator = (const complex_t& result);
+	complex_t& operator += (const complex_t& c2); 
+	complex_t& operator -= (const complex_t& c2) ;
+	complex_t& operator *= (const complex_t& c2) ;
+	complex_t& operator /= (const complex_t& c2) ;
+	complex_t& operator = (const complex_t& result);
 	bool operator == (const complex_t& c2) const;
 	friend istream& operator >> (istream&cin,complex_t& result);
 	friend ostream& operator << (ostream&cout,const complex_t& result);
