@@ -1,7 +1,7 @@
 #include "сomplex_t.hpp"
-complex_t::complex_t() : a(0.0), b(0.0)
+complex_t::complex_t() : real_(0.0), img_(0.0)
 {}
-complex_t::complex_t(double x, double y) : a(x), b(y)
+complex_t::complex_t(double x, double y) : real_(x), img_(y)
 {}
 complex_t::complex_t(const complex_t&cop)
 {
@@ -24,7 +24,7 @@ bool complex_t::operator == (const complex_t& c2) const
 	else
 		return false;
 }
-complex_t complex_t::operator = (const complex_t& result)
+complex_t& complex_t::operator = (const complex_t& result)
 {
 	if (this != &result) 
 	{
@@ -65,20 +65,20 @@ complex_t complex_t::operator / (const complex_t& c2) const
 	return complex_t((real_*c2.real_ + img_*c2.img_) / (c2.real_*c2.real_ + c2.img_*c2.img_), (c2.real_*img_ - real_*c2.img_) / (c2.real_*c2.real_ + c2.img_*c2.img_));
 }
 
-complex_t complex_t::operator += (const complex_t& c2) 
+complex_t& complex_t::operator += (const complex_t& c2) 
 {
 	real_ += c2.real_;
 	img_ += c2.img_;
 	return *this;
 }
 
-complex_t complex_t::operator -= (const complex_t& c2) 
+complex_t& complex_t::operator -= (const complex_t& c2) 
 {
 	real_ -= c2.real_;
 	img_ -= c2.img_;
 	return *this;
 }
-complex_t complex_t::operator /= (const complex_t& c2) 
+complex_t& complex_t::operator /= (const complex_t& c2) 
 {
 	double a = (real_*c2.real_ + img_*c2.img_) / (c2.real_*c2.real_ + c2.img_*c2.img_);
 	img_ = (c2.real_*img_ - real_*c2.img_) / (c2.real_*c2.real_ + c2.img_*c2.img_);
@@ -86,7 +86,7 @@ complex_t complex_t::operator /= (const complex_t& c2)
 	return *this;
 }
 
-complex_t complex_t::operator *= (const complex_t& c2) 
+complex_t& complex_t::operator *= (const complex_t& c2) 
 {
 	double a = real_*c2.real_ - img_*c2.img_;
 	img_ = real_*c2.img_ + c2.real_*img_;
