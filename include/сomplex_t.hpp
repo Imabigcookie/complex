@@ -4,14 +4,14 @@ using namespace std;
 class complex_t
 {
 private:
-	double a;
-	double b;
+	double real_;
+	double img_;
 public:
 	complex_t();
 	complex_t(double x, double y);
 	complex_t(const complex_t&cop);
-	double a_() const;
-	double b_() const;
+	double a() const;
+	double b() const;
 	complex_t operator * (const complex_t& c2) const;
 	complex_t operator / (const complex_t& c2) const;
 	complex_t operator += (const complex_t& c2); 
