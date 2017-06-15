@@ -21,6 +21,8 @@ bool complex_t::operator == (const complex_t& c2) const
 {
 	if ((a == c2.a) && (b == c2.b))
 		return true;
+	else
+		return false;
 }
 complex_t complex_t::operator = (const complex_t& result)
 {
@@ -34,9 +36,9 @@ complex_t complex_t::operator = (const complex_t& result)
 }
 istream& operator >> (istream&cin, complex_t& result) 
 {
-	cout << "Please enter real complex part:" << endl;
+	cout << "real complex part:" << endl;
 	cin >> result.a;
-	cout << "Please enter imaginary complex part:" << endl;
+	cout << "imaginary complex part:" << endl;
 	cin >> result.b;
 	cout << endl;
 	return cin;
