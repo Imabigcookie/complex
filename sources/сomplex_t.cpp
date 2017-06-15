@@ -5,21 +5,21 @@ complex_t::complex_t(double x, double y) : a(x), b(y)
 {}
 complex_t::complex_t(const complex_t&cop)
 {
-	a = cop.a;
-	b = cop.b;
+	real_ = cop.real_;
+	img_ = cop.img_;
 }
-double complex_t::a_() const
+double complex_t::a() const
 {
-	return a;
+	return real_;
 }
 
-double complex_t::b_() const
+double complex_t::b() const
 {
-	return b;
+	return real_;
 }
 bool complex_t::operator == (const complex_t& c2) const
 {
-	if ((a == c2.a) && (b == c2.b))
+	if ((real_ == c2.real_) && (img_ == c2.img_))
 		return true;
 	else
 		return false;
@@ -28,8 +28,8 @@ complex_t complex_t::operator = (const complex_t& result)
 {
 	if (this != &result) 
 	{
-	a = result.a;
-	b = result.b;
+	real_ = result.real_;
+	img_ = result.img_;
 	return *this;
 	}
 
@@ -37,58 +37,59 @@ complex_t complex_t::operator = (const complex_t& result)
 istream& operator >> (istream&cin, complex_t& result) 
 {
 	cout << "real complex part:" << endl;
-	cin >> result.a;
+	cin >> result.real_;
 	cout << "imaginary complex part:" << endl;
-	cin >> result.b;
+	cin >> result.img_;
 	cout << endl;
 	return cin;
 }
 
 ostream& operator << (ostream&cout,const complex_t& result) 
 {
-	if (result.b < 0)
+	if (result.img_ < 0)
 	{
-		cout << result.a << result.b << "i" << endl;
+		cout << result.real_ << result.img_ << "i" << endl;
 	}
 	else
-		cout << result.a << "+" << result.b << "i" << endl;
+		cout << result.real_ << "+" << result.img_ << "i" << endl;
 	return cout;
 }
+
 complex_t complex_t::operator * (const complex_t& c2) const
 {
-	return complex_t(a*c2.a - b*c2.b, a*c2.b + c2.a*b);
+	return complex_t(real_*c2.real_ - img_*c2.img_, real_*c2.img_ + c2.real_*img_);
 }
 
 complex_t complex_t::operator / (const complex_t& c2) const
 {
-	return complex_t((a*c2.a + b*c2.b) / (c2.a*c2.a + c2.b*c2.b), (c2.a*b - a*c2.b) / (c2.a*c2.a + c2.b*c2.b));
+	return complex_t((real_*c2.real_ + img_*c2.img_) / (c2.real_*c2.real_ + c2.img_*c2.img_), (c2.real_*img_ - real_*c2.img_) / (c2.real_*c2.real_ + c2.img_*c2.img_));
 }
 
 complex_t complex_t::operator += (const complex_t& c2) 
 {
-	a += c2.a;
-	b += c2.b;
+	real_ += c2.real_;
+	img_ += c2.img_;
 	return *this;
 }
 
 complex_t complex_t::operator -= (const complex_t& c2) 
 {
-	a -= c2.a;
-	b -= c2.b;
+	real_ -= c2.real_;
+	img_ -= c2.img_;
 	return *this;
 }
 complex_t complex_t::operator /= (const complex_t& c2) 
 {
-	float a_ = (a*c2.a + b*c2.b) / (c2.a*c2.a + c2.b*c2.b);
-	b = (c2.a*b - a*c2.b) / (c2.a*c2.a + c2.b*c2.b);
-	a = a_;
+	double a = (real_*c2.real_ + img_*c2.img_) / (c2.real_*c2.real_ + c2.img_*c2.img_);
+	img_ = (c2.real_*img_ - real_*c2.img_) / (c2.real_*c2.real_ + c2.img_*c2.img_);
+	real_ = a;
 	return *this;
 }
 
 complex_t complex_t::operator *= (const complex_t& c2) 
 {
-	float a_ = a*c2.a - b*c2.b;
-	b = a*c2.b + c2.a*b;
-	a = a_;
+	double a = real_*c2.real_ - img_*c2.img_;
+	img_ = real_*c2.img_ + c2.real_*img_;
+	real_ = a;
 	return *this;
 }
